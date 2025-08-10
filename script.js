@@ -19,7 +19,10 @@ cardViewBtn.onclick = () => {
 mapViewBtn.onclick = () => {
   mapView.classList.remove("hidden");
   cardView.classList.add("hidden");
-  if (!map) initMap();
+  if (!map) {
+    initMap();
+  }
+  addMarkers(data);
 };
 
 function initMap() {
@@ -27,6 +30,37 @@ function initMap() {
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "© OpenStreetMap contributors"
   }).addTo(map);
+}
+
+function addMarkers(filteredData) {
+  // Remove old markers
+  markers.forEach(m => map.removeLayer(m));
+  markers = [];
+
+  const bounds = [];
+
+  filteredData.forEach(org => {
+    if (org.Latitude && org.Longitude) {
+      const lat = parseFloat(org.Latitude);
+      const lng = parseFloat(org.Longitude);
+
+      if (!isNaN(lat) && !isNaN(lng)) {
+        const marker = L.marker([lat, lng])
+          .bindPopup(`
+            <strong>${org.Organization}</strong><br>
+            ${org.County}, ${org.Region}
+          `);
+        marker.addTo(map);
+        markers.push(marker);
+        bounds.push([lat, lng]);
+      }
+    }
+  });
+
+  // Zoom to fit all markers
+  if (bounds.length > 0) {
+    map.fitBounds(bounds, { padding: [50, 50] });
+  }
 }
 
 function renderCards(filteredData) {
@@ -73,6 +107,10 @@ function applyFilters() {
   });
 
   renderCards(filtered);
+
+  if (map && !mapView.classList.contains("hidden")) {
+    addMarkers(filtered);
+  }
 }
 
 regionFilter.onchange = applyFilters;
@@ -83,10 +121,8 @@ Papa.parse(csvUrl, {
   header: true,
   complete: results => {
     data = results.data;
+    console.log("Loaded data:", data); // debug log
     populateFilters();
     renderCards(data);
   }
 });
-
-
-
