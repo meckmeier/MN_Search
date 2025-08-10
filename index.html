@@ -12,34 +12,37 @@
 
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <h2>Filter</h2>
-      <label>
-        Region:
-        <select id="regionFilter">
-          <option value="all">All</option>
-        </select>
-      </label>
-      <label>
-        County:
-        <select id="countyFilter">
-          <option value="all">All</option>
-        </select>
-      </label>
-      <button id="cardViewBtn">Card View</button>
-      <button id="mapViewBtn">Map View</button>
-    </aside>
+<button id="filterToggle" class="filter-toggle">☰ Filter</button>
+<div class="container">
+  <aside class="sidebar hidden">
+    <h2>Filter</h2>
+    <label>
+      Region:
+      <select id="regionFilter">
+        <option value="all">All</option>
+      </select>
+    </label>
+    <label>
+      County:
+      <select id="countyFilter">
+        <option value="all">All</option>
+      </select>
+    </label>
+    <button id="cardViewBtn">Card View</button>
+    <button id="mapViewBtn">Map View</button>
+  </aside>
 
-    <main class="main-content">
-      <div id="cardView" class="card-view"></div>
-      <div id="mapView" class="map-view hidden">
-        <div id="map"></div>
-      </div>
-    </main>
-  </div>
+  <main class="main-content">
+    <div id="cardView" class="card-view"></div>
+    <div id="mapView" class="map-view hidden">
+      <div id="map"></div>
+    </div>
+  </main>
+</div>
+
 
   <script src="script.js"></script>
 </body>
 </html>
+
 
