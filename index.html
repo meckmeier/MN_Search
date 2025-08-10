@@ -2,46 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Organization Explorer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WI Nature Organizations</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
   <div class="container">
     <aside class="sidebar">
-      <h2>Filters</h2>
+      <h2>Filter</h2>
       <label>
-        Category:
-        <select id="categoryFilter">
+        Region:
+        <select id="regionFilter">
           <option value="all">All</option>
-          <option value="education">Education</option>
-          <option value="health">Health</option>
         </select>
       </label>
       <label>
-        Location:
-        <input type="text" id="locationFilter" placeholder="Enter location" />
+        County:
+        <select id="countyFilter">
+          <option value="all">All</option>
+        </select>
       </label>
+      <button id="cardViewBtn">Card View</button>
+      <button id="mapViewBtn">Map View</button>
     </aside>
 
     <main class="main-content">
-      <div class="view-toggle">
-        <button id="cardViewBtn">Card View</button>
-        <button id="mapViewBtn">Map View</button>
-      </div>
-
-      <div id="cardView" class="card-view">
-        <!-- Example cards -->
-        <div class="card">
-          <h3>Organization A</h3>
-          <p>Focus: Education</p>
-        </div>
-        <div class="card">
-          <h3>Organization B</h3>
-          <p>Focus: Health</p>
-        </div>
-      </div>
-
+      <div id="cardView" class="card-view"></div>
       <div id="mapView" class="map-view hidden">
-        <iframe
-          src="https://www.google.com/maps
+        <div id="map"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body>
+</html>
