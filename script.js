@@ -1,11 +1,13 @@
 // script.js
-const publicSpreadsheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Mbay1-b4cCmb6dMT8yVAPEI8HApC25epWiqQIk1_43FcSlOfvucowCkVfS_wxX0PWtBgETb17Pk0/pubhtml';
+const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Mbay1-b4cCmb6dMT8yVAPEI8HApC25epWiqQIk1_43FcSlOfvucowCkVfS_wxX0PWtBgETb17Pk0/pub?output=csv';
 
 function init() {
-  Tabletop.init({
-    key: publicSpreadsheetURL,
-    callback: showData,
-    simpleSheet: true
+  Papa.parse(sheetURL, {
+    download: true,
+    header: true,
+    complete: function(results) {
+      showData(results.data);
+    }
   });
 }
 
@@ -26,7 +28,6 @@ function showData(data) {
     cardContainer.appendChild(card);
   });
 
-  // Populate filter
   const filter = document.getElementById('categoryFilter');
   categorySet.forEach(cat => {
     const option = document.createElement('option');
@@ -42,7 +43,6 @@ function showData(data) {
     });
   });
 
-  // Map view
   const map = L.map('mapView').setView([45, -93], 4);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
@@ -56,4 +56,3 @@ function showData(data) {
 }
 
 window.addEventListener('DOMContentLoaded', init);
-
