@@ -18,6 +18,7 @@ filterToggle.onclick = () => {
   sidebar.classList.toggle("show");
 };
 
+
 cardViewBtn.onclick = () => {
   cardView.classList.remove("hidden");
   mapView.classList.add("hidden");
@@ -133,6 +134,7 @@ Papa.parse(csvUrl, {
     renderCards(data);
   }
 });
+
 
 
 
