@@ -19,6 +19,26 @@ function init() {
     }
   });
 }
+function setupViewToggle() {
+  const toggle = document.getElementById('viewToggle');
+  const cardView = document.getElementById('cardView');
+  const mapView = document.getElementById('mapView');
+
+  // Default to card view
+  cardView.style.display = 'block';
+  mapView.style.display = 'none';
+
+  toggle.addEventListener('change', () => {
+    const selected = toggle.value;
+    if (selected === 'cards') {
+      cardView.style.display = 'block';
+      mapView.style.display = 'none';
+    } else {
+      cardView.style.display = 'none';
+      mapView.style.display = 'block';
+    }
+  });
+}
 
 function showData(data) {
   const cardContainer = document.getElementById('cardView');
@@ -43,6 +63,7 @@ function showData(data) {
     `;
 
     cardContainer.appendChild(card);
+    setupViewToggle
   });
 
   const filter = document.getElementById('categoryFilter');
@@ -76,3 +97,4 @@ function showData(data) {
 }
 
 window.addEventListener('DOMContentLoaded', init);
+
