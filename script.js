@@ -3,19 +3,19 @@ const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Mbay1-b4cCm
 function init() {
   Papa.parse(sheetURL, {
     download: true,
-    header: true,
     skipEmptyLines: true,
     complete: function(results) {
-      const cleanData = results.data.map(item => {
-        const cleaned = {};
-        Object.keys(item).forEach(key => {
-          const cleanKey = key.replace(/^\uFEFF/, '').trim(); // Remove BOM and trim
-          cleaned[cleanKey] = item[key]?.trim();
+      const rows = results.data;
+      const headers = rows[0];
+      const data = rows.slice(1).map(row => {
+        const obj = {};
+        headers.forEach((key, i) => {
+          obj[key.trim()] = row[i]?.trim();
         });
-        return cleaned;
-      }).filter(item => item.Organization); // Remove empty rows
+        return obj;
+      });
 
-      showData(cleanData);
+      showData(data.filter(item => item.Organization));
     }
   });
 }
@@ -23,6 +23,8 @@ function init() {
 function showData(data) {
   const cardContainer = document.getElementById('cardView');
   const categorySet = new Set();
+
+  cardContainer.innerHTML = '';
 
   data.forEach(item => {
     const category = item.Region || 'Uncategorized';
@@ -44,6 +46,7 @@ function showData(data) {
   });
 
   const filter = document.getElementById('categoryFilter');
+  filter.innerHTML = '<option value="">All</option>';
   categorySet.forEach(cat => {
     const option = document.createElement('option');
     option.value = cat;
