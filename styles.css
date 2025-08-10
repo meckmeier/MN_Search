@@ -24,6 +24,7 @@ body {
   max-width: 100%;
 }
 #mapView {
-  width: 100%;
-  margin-top: 20px;
+  height: 20vh; /* 20% of viewport height */
+  min-height: 150px;
 }
+
