@@ -74,3 +74,34 @@ body {
 .hidden {
   display: none;
 }
+
+/* ===== Filter Toggle Button ===== */
+.filter-toggle {
+  display: none;
+  padding: 10px 15px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .filter-toggle {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    max-width: 250px;
+    width: 80%;
+    backg
