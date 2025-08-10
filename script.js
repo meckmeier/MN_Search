@@ -24,24 +24,9 @@ mapViewBtn.onclick = () => {
 
 function initMap() {
   map = L.map("map").setView([44.5, -89.5], 7);
-
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "© OpenStreetMap contributors"
   }).addTo(map);
-
-  markers.forEach(marker => map.removeLayer(marker));
-  markers = [];
-
-  data.forEach(org => {
-    const lat = parseFloat(org.latitude);
-    const lng = parseFloat(org.longitude);
-    if (!isNaN(lat) && !isNaN(lng)) {
-      const marker = L.marker([lat, lng])
-        .addTo(map)
-        .bindPopup(`<strong>${org.Organization}</strong><br>${org.City}, ${org.County}`);
-      markers.push(marker);
-    }
-  });
 }
 
 function renderCards(filteredData) {
@@ -102,3 +87,4 @@ Papa.parse(csvUrl, {
     renderCards(data);
   }
 });
+
