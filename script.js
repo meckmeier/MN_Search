@@ -1,4 +1,4 @@
-const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Mbay1-b4cCmb6dMT8yVAPEI8HApC25epWiqQIk1_43FcSlOfvucowCkVfS_wxX0PWtBgETb17Pk0/pub?output=csv";
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Mbay1-b4cCmb6dMT8yVAPEI8HApC25epWiqQIk1_43FcSlOfvucowCkVfS_wxX0PWtBgETb17Pk0/csv";
 
 let data = [];
 let map;
@@ -23,23 +23,22 @@ mapViewBtn.onclick = () => {
 };
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 44.5, lng: -89.5 },
-    zoom: 7,
-  });
+  map = L.map("map").setView([44.5, -89.5], 7);
 
-  markers.forEach(marker => marker.setMap(null));
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "© OpenStreetMap contributors"
+  }).addTo(map);
+
+  markers.forEach(marker => map.removeLayer(marker));
   markers = [];
 
   data.forEach(org => {
     const lat = parseFloat(org.latitude);
     const lng = parseFloat(org.longitude);
     if (!isNaN(lat) && !isNaN(lng)) {
-      const marker = new google.maps.Marker({
-        position: { lat, lng },
-        map,
-        title: org.Organization,
-      });
+      const marker = L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(`<strong>${org.Organization}</strong><br>${org.City}, ${org.County}`);
       markers.push(marker);
     }
   });
