@@ -8,18 +8,25 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
+
   <div id="sidebar">
     <h2>Filter</h2>
     <select id="categoryFilter">
       <option value="">All</option>
     </select>
   </div>
-  <div id="cardView"></div>
-  <div id="mapView"></div>
+  <select id="viewToggle">
+    <option value="cards">Card View</option>
+    <option value="map">Map View</option>
+  </select>
 
+  <div id="cardView"></div>
+  <div id="mapView" style="height: 400px;"></div>
+  
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
