@@ -40,9 +40,9 @@ function addMarkers(filteredData) {
   const bounds = [];
 
   filteredData.forEach(org => {
-    if (org.Latitude && org.Longitude) {
-      const lat = parseFloat(org.Latitude);
-      const lng = parseFloat(org.Longitude);
+    if (org.latitude && org.longitude) {
+      const lat = parseFloat(org.latitude);
+      const lng = parseFloat(org.longitude);
 
       if (!isNaN(lat) && !isNaN(lng)) {
         const marker = L.marker([lat, lng])
@@ -126,3 +126,4 @@ Papa.parse(csvUrl, {
     renderCards(data);
   }
 });
+
