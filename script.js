@@ -11,6 +11,13 @@ const mapViewBtn = document.getElementById("mapViewBtn");
 const regionFilter = document.getElementById("regionFilter");
 const countyFilter = document.getElementById("countyFilter");
 
+const filterToggle = document.getElementById("filterToggle");
+const sidebar = document.querySelector(".sidebar");
+
+filterToggle.onclick = () => {
+  sidebar.classList.toggle("show");
+};
+
 cardViewBtn.onclick = () => {
   cardView.classList.remove("hidden");
   mapView.classList.add("hidden");
@@ -126,6 +133,7 @@ Papa.parse(csvUrl, {
     renderCards(data);
   }
 });
+
 
 
 
