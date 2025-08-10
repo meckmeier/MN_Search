@@ -12,13 +12,23 @@
 
 </head>
 <body>
-<div class="container">
+<div id="mySidepanel" class="sidepanel">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
 
   
+<button class="openbtn" onclick="openNav()">☰ Toggle Sidepanel</button>  
+<h2>Collapsed Sidepanel</h2>
+<p>Click on the hamburger menu/bar icon to open the sidepanel.</p>
+
     <button id="cardViewBtn">Card View</button>
     <button id="mapViewBtn">Map View</button>
     <button id="filterToggle" class="filter-toggle">☰ Filter</button>
-  
+   
     <aside class="sidebar hidden">
       <h2>Filter</h2>
       <label>
@@ -48,6 +58,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
