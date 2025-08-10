@@ -121,10 +121,11 @@ Papa.parse(csvUrl, {
   header: true,
   complete: results => {
     data = results.data;
-    console.log("Loaded data:", data.slice(0,5)); // show first 5 rows
+     console.log(data[0])
     populateFilters();
     renderCards(data);
   }
 });
+
 
 
