@@ -19,6 +19,13 @@ filterToggle.onclick = () => {
 };
 
 
+function openNav() {
+  document.getElementById("mySidepanel").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidepanel").style.width = "0";
+}
 cardViewBtn.onclick = () => {
   cardView.classList.remove("hidden");
   mapView.classList.add("hidden");
@@ -134,6 +141,7 @@ Papa.parse(csvUrl, {
     renderCards(data);
   }
 });
+
 
 
 
