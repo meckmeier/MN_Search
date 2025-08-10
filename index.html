@@ -1,33 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Data Viewer</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organization Explorer</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Filters</h2>
+      <label>
+        Category:
+        <select id="categoryFilter">
+          <option value="all">All</option>
+          <option value="education">Education</option>
+          <option value="health">Health</option>
+        </select>
+      </label>
+      <label>
+        Location:
+        <input type="text" id="locationFilter" placeholder="Enter location" />
+      </label>
+    </aside>
 
-  <div id="sidebar">
-    <h2>Filter</h2>
-    <select id="categoryFilter">
-      <option value="">All</option>
-    </select>
-  </div>
-  <select id="viewToggle">
-    <option value="cards">Card View</option>
-    <option value="map">Map View</option>
-  </select>
+    <main class="main-content">
+      <div class="view-toggle">
+        <button id="cardViewBtn">Card View</button>
+        <button id="mapViewBtn">Map View</button>
+      </div>
 
-  <div id="cardView"></div>
-  <div id="mapView" style="height: 400px;"></div>
-  
-  <script src="script.js"></script>
-</body>
-</html>
+      <div id="cardView" class="card-view">
+        <!-- Example cards -->
+        <div class="card">
+          <h3>Organization A</h3>
+          <p>Focus: Education</p>
+        </div>
+        <div class="card">
+          <h3>Organization B</h3>
+          <p>Focus: Health</p>
+        </div>
+      </div>
 
-
-
-
-
+      <div id="mapView" class="map-view hidden">
+        <iframe
+          src="https://www.google.com/maps
